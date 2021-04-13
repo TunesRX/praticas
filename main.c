@@ -2,13 +2,8 @@
 #include <stdlib.h>
 #include <time.h>
 #include <pthread.h>
-int main(int argc, char **argv)
-{
-    if(argc != 2){
-        printf("precisa do numero \n");
-        return 0;
-    }
-    double n = atoi(argv[1]);
+
+double takeTimes(double n){
 	double in = 0;
     double x, y;
     int res = 0;
@@ -28,6 +23,22 @@ int main(int argc, char **argv)
 
     // %s is format specifier
     double pi = (res/n)*4;
-	printf("%lf \n",pi);
+	return pi;
+}
+int main(int argc, char **argv)
+{
+    clock_t start_t, end_t, total_t;
+    total_t = 0;
+    double n = 1000000;
+    double res = 0;
+    for(int i = 0; i<5; i++){
+        start_t = clock();
+        res = takeTimes(n);
+        end_t = clock();
+        total_t += (double)(end_t - start_t) ;
+    }
+   
+   printf( " %f \n", total_t/5.0);
+    
    return 0;
 }
